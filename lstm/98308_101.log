@@ -1,0 +1,83 @@
+main start at this time 1623569062.5858636
+before load_ogb step Time(s): 0.0017
+load ogbn-products
+-------------------------------------------------------------data = DglNodePropPredDataset(name=name)*************************** step Time(s): 1.4874
+finish loading ogbn-products
+-------------------------------------------------------------splitted_idx = data.get_idx_split()*************************** step Time(s): 0.2827
+-------------------------------------------------------------graph, labels = data[0]*************************** step Time(s): 0.0000
+tensor([[0],
+        [1],
+        [2],
+        ...,
+        [8],
+        [2],
+        [4]])
+(Graph(num_nodes=2449029, num_edges=123718280,
+      ndata_schemes={'feat': Scheme(shape=(100,), dtype=torch.float32)}
+      edata_schemes={}), tensor([[0],
+        [1],
+        [2],
+        ...,
+        [8],
+        [2],
+        [4]]))
+Graph(num_nodes=2449029, num_edges=123718280,
+      ndata_schemes={'feat': Scheme(shape=(100,), dtype=torch.float32)}
+      edata_schemes={})
+-------------------------------------------------------------labels = labels[:, 0]*************************** step Time(s): 0.0011
+-------------------------------------------------------------graph.ndata['features'] = graph.ndata['feat']*************************** step Time(s): 0.0002
+-------------------------------------------------graph.ndata['labels'] = labels****************** step Time(s): 0.0000
+-------------------------------------------------train_nid, val_nid, test_nid = splitted_idx****************** step Time(s): 0.1170
+-------------------------------------------------end of load ogb****************** step Time(s): 0.0019
+finish constructing ogbn-products
+load ogb-products time total: 1.8903992176055908
+#nodes: 2449029
+#edges: 123718280
+#classes: 47
+after load_ogb step Time(s): 1.8915
+after inductive else step Time(s): 0.0001
+after label step Time(s): 3.6843
+after train_g.create_formats_() step Time(s): 1.5425
+after pack data step Time(s): 0.0000
+ start_run step Time(s): 0.0000
+ unpack data step Time(s): 0.0000
+ train_mask step Time(s): 0.0081
+val_mask and  test_mask step Time(s): 0.0160
+in_feats 100
+train_labels.shape torch.Size([2449029])
+ create a sampler instance step Time(s): 0.0001
+args.batch_size 98308
+ create a data loader instance step Time(s): 0.0018
+ create a model instance step Time(s): 0.0028
+SAGE(
+  (layers): ModuleList(
+    (0): SAGEConv(
+      (feat_drop): Dropout(p=0.0, inplace=False)
+      (lstm): LSTM(100, 100, batch_first=True)
+      (fc_self): Linear(in_features=100, out_features=16, bias=False)
+      (fc_neigh): Linear(in_features=100, out_features=16, bias=False)
+    )
+    (1): SAGEConv(
+      (feat_drop): Dropout(p=0.0, inplace=False)
+      (lstm): LSTM(16, 16, batch_first=True)
+      (fc_self): Linear(in_features=16, out_features=47, bias=False)
+      (fc_neigh): Linear(in_features=16, out_features=47, bias=False)
+    )
+  )
+  (dropout): Dropout(p=0.5, inplace=False)
+)
+ create an optimizer instance step Time(s): 0.0015
+
+   ***************************     step   0   *************************************
+-----------------------------------------step start------------------------
+Nvidia-smi: 2.30517578125GB	
+Max Memory Allocated 0.9309115409851074  GigaBytes
+
+-----------------------------------------before blocks to device
+Nvidia-smi: 2.93798828125GB	
+Max Memory Allocated 1.562431812286377  GigaBytes
+
+-----------------------------------------after blocks to device
+Nvidia-smi: 3.06103515625GB	
+Max Memory Allocated 1.562431812286377  GigaBytes
+
